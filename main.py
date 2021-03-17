@@ -3,6 +3,10 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
 from kivymd.app import MDApp
+from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.gridlayout import MDGridLayout
+from kivymd.uix.list import ThreeLineAvatarListItem
+from kivymd.uix.tab import MDTabsBase
 
 KV = '''
 #:import KivyLexer kivy.extras.highlight.KivyLexer
@@ -18,6 +22,42 @@ BoxLayout:
         errors_text_color: 1, 1, 0, 1
         errors_background_color: app.theme_cls.bg_dark
 '''
+
+class Tab(MDFloatLayout, MDTabsBase):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+class GL(MDGridLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
+        self.add_widget(ThreeLineAvatarListItem())
 
 class ContentNavigationDrawer(BoxLayout):
     """

@@ -1,3 +1,12 @@
+<GL>
+    cols: 1
+    adaptive_height: True
+    pos_hint: {"top": 1}
+    size_hint: 1, None
+    # size: 0, dp(-100)
+    padding: dp(10), dp(10)
+    spacing: dp(4)
+
 Screen:
     name: "account"
     MDCard:
@@ -11,7 +20,7 @@ Screen:
                 orientation: "vertical"
                 padding: "20dp"
                 size_hint: 0.98, None
-                size: 0, "180dp"
+                size: 0, "160dp"
                 pos_hint: {"center_x": .5, "top": 0.95}
                 AnchorLayout:
                     anchor_x: "right"
@@ -39,19 +48,19 @@ Screen:
 
 
                             MDLabel:
-                                id: user_name
-                                size_hint: None, None
-                                size: "100dp", "25dp"
+                                padding: dp(10), dp(10)
+
                                 text: "app.username"
 
                         MDCard:
 
                             size_hint: None, None
                             size: "155dp", "24dp"
-                            text: "app.username"
+
 
                             MDLabel:
-                                text: "text 1"
+                                padding: dp(10), dp(10)
+                                text: "Fun's: " + "app.fans_count"
 
                         MDCard:
 
@@ -60,39 +69,114 @@ Screen:
                             text: "app.username"
 
                             MDLabel:
-                                text: "text 1"
+                                padding: dp(10), dp(10)
+                                text: "Like's: " + "app.thank_count"
 
-#                        MDCard:
-#
-#                            size_hint: None, None
-#                            MDLabel:
-#                                text: "text 2"
-#
-#                        MDCard:
-#
-#                            size_hint: None, None
-#                            MDLabel:
-#                                text: "text 1"
-#
-#                        MDCard:
-#
-#                            size_hint: None, None
-#                            MDLabel:
-#                                text: "text 3"
-#                                #pos_hint: {"top": 0.99, "right": 1.05}
-#
-#                        MDCard:
-#
-#                            size_hint: None, None
-#                            MDLabel:
-#                                text: "text 4"
-#                                #pos_hint: {"top": 0.99, "right": 1.05}
+                        MDCard:
+
+                            size_hint: None, None
+                            size: "155dp", "24dp"
+                            text: "app.username"
+
+                            MDLabel:
+                                padding: dp(10), dp(10)
+                                text: "You like's: " + "app.agree_count"
 
 
+    MDTabs:
+        pos: "0dp", "-180dp"
+        background_color: 0, 0, 0, 0
+        text_color_normal: 0, 0, 0, 1
+        text_color_active: 0, 0, 0, 0.7
+        Tab:
+            title: "Informacja o tobie"
+            content_text: f"This is an example text for {self.title}"
+            ScrollView:
+                MDGridLayout:
+                    cols: 1
+                    adaptive_height: True
+                    pos_hint: {"top": 1}
+                    padding: dp(10), dp(10)
+                    spacing: dp(4)
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
 
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
 
-                    # font_style: "Button"
-                    # size_hint_y: None
-                    # height: self.texture_size[1]
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
 
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
+
+        Tab:
+            title: "Twoje pytania"
+            content_text: f"This is an example text for {self.title}"
+            ScrollView:
+                MDGridLayout:
+                    cols: 1
+                    adaptive_height: True
+                    pos_hint: {"top": 1}
+                    padding: dp(10), dp(10)
+                    spacing: dp(4)
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
+
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
+
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
+
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
+        Tab:
+            size_from_parent: self.parent.pos[1]
+            id: tab_n
+            title: "Twoje odpowiedzi"
+
+            content_text: f"This is an example text for {self.title}"
+            ScrollView:
+                pos_hint: {"top": 1}
+                size_hint: 1, None
+                size: 0, self.parent.size[1] - (self.parent.size_from_parent*(-1))
+                adaptive_height: True
+                GL:
+
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
+
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
+
+                    ThreeLineAvatarListItem:
+                        text: "Three-line item with avatar"
+                        secondary_text: "Secondary text here"
+                        tertiary_text: "fit more text than usual"
+
+                        ImageLeftWidget:
+                            source: "data/logo/kivy-icon-256.png"
 
