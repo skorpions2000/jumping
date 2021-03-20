@@ -1,12 +1,14 @@
 from kivy.lang import Builder
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.screenmanager import Screen
+from kivy.uix.scrollview import ScrollView
 
 from kivymd.app import MDApp
-from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.card import MDCard
+
 from kivymd.uix.gridlayout import MDGridLayout
-from kivymd.uix.list import ThreeLineAvatarListItem
-from kivymd.uix.tab import MDTabsBase
+from kivymd.uix.label import MDLabel
 
 KV = '''
 #:import KivyLexer kivy.extras.highlight.KivyLexer
@@ -22,57 +24,39 @@ BoxLayout:
         errors_text_color: 1, 1, 0, 1
         errors_background_color: app.theme_cls.bg_dark
 '''
+class MainScreen(Screen):
+    def on_enter(self, *args):
+        self.add_widget(MDLabel(text="dsdds"))
 
-class Tab(MDFloatLayout, MDTabsBase):
+
+
+class AskView(MDCard):
+    text = StringProperty('ask')
+    pass
+
+
+class AnswerView(MDCard):
+    pass
+    # text = StringProperty('answer')
+
+
+class AllViewScroll(ScrollView):
+    pass
+
+
+class Content(MDGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-class GL(MDGridLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem(text="Three-line item with avatar", secondary_text="Secondary text here", tertiary_text="fit more text than usual"))
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
 
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
+    pass
 
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-        self.add_widget(ThreeLineAvatarListItem())
-
-class ContentNavigationDrawer(BoxLayout):
-    """
-    Этот класс переключает скрины которые в меню которое реализовано
-    в файле main.kv
-    """
-    test_value = 'In name'
-    screen_manager = ObjectProperty()
-    nav_drawer = ObjectProperty()
 
 class Example(MDApp):
     path_to_kv_file = "main.kv"
 
     def build(self):
-        self.theme_cls.theme_style = "Light"
+        self.theme_cls.theme_style = "Dark"
         return Builder.load_string(KV)
 
     def update_kv_file(self, text):

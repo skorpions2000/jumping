@@ -1,182 +1,66 @@
-<GL>
+<Content>:
     cols: 1
     adaptive_height: True
     pos_hint: {"top": 1}
-    size_hint: 1, None
-    # size: 0, dp(-100)
     padding: dp(10), dp(10)
     spacing: dp(4)
 
+
+
 Screen:
     name: "account"
-    MDCard:
-        MDGridLayout:
-            cols: 2
-            adaptive_height: True
-            pos_hint: {"top": 1}
-            padding: dp(10), dp(10)
-            spacing: dp(4)
+    ScrollView:
+        do_scroll_y: True
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
             MDCard:
-                orientation: "vertical"
-                padding: "20dp"
-                size_hint: 0.98, None
-                size: 0, "160dp"
-                pos_hint: {"center_x": .5, "top": 0.95}
-                AnchorLayout:
-                    anchor_x: "right"
-                    size_hint_y: 1
-                    height: avatar.height
+                Content:
 
-                    Image:
-                        id: avatar
-                        size_hint: None, None
-                        size: "100dp", "100dp"
-                        allow_stretch: True
-                        source: "img/img.png"
-                    BoxLayout:
+                    AskView:
                         orientation: "vertical"
-                        pos_hint: {"top": 1}
-                        anchor_x: "left"
-                        size_hint_y: 1
-                        spacing: dp(5)
-                        height: avatar.height
-
-                        MDCard:
-
-                            size_hint: None, None
-                            size: "155dp", "24dp"
-
-
-                            MDLabel:
-                                padding: dp(10), dp(10)
-
-                                text: "app.username"
-
-                        MDCard:
-
-                            size_hint: None, None
-                            size: "155dp", "24dp"
-
-
-                            MDLabel:
-                                padding: dp(10), dp(10)
-                                text: "Fun's: " + "app.fans_count"
-
-                        MDCard:
-
-                            size_hint: None, None
-                            size: "155dp", "24dp"
-                            text: "app.username"
-
-                            MDLabel:
-                                padding: dp(10), dp(10)
-                                text: "Like's: " + "app.thank_count"
-
-                        MDCard:
-
-                            size_hint: None, None
-                            size: "155dp", "24dp"
-                            text: "app.username"
-
-                            MDLabel:
-                                padding: dp(10), dp(10)
-                                text: "You like's: " + "app.agree_count"
-
-
-    MDTabs:
-        pos: "0dp", "-180dp"
-        background_color: 0, 0, 0, 0
-        text_color_normal: 0, 0, 0, 1
-        text_color_active: 0, 0, 0, 0.7
-        Tab:
-            title: "Informacja o tobie"
-            content_text: f"This is an example text for {self.title}"
-            ScrollView:
-                MDGridLayout:
-                    cols: 1
-                    adaptive_height: True
-                    pos_hint: {"top": 1}
-                    padding: dp(10), dp(10)
-                    spacing: dp(4)
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-
-        Tab:
-            title: "Twoje pytania"
-            content_text: f"This is an example text for {self.title}"
-            ScrollView:
-                MDGridLayout:
-                    cols: 1
-                    adaptive_height: True
-                    pos_hint: {"top": 1}
-                    padding: dp(10), dp(10)
-                    spacing: dp(4)
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-        Tab:
-            size_from_parent: self.parent.pos[1]
-            id: tab_n
-            title: "Twoje odpowiedzi"
-
-            content_text: f"This is an example text for {self.title}"
-            ScrollView:
-                pos_hint: {"top": 1}
-                size_hint: 1, None
-                size: 0, self.parent.size[1] - (self.parent.size_from_parent*(-1))
-                adaptive_height: True
-                GL:
-
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-
-                    ThreeLineAvatarListItem:
-                        text: "Three-line item with avatar"
-                        secondary_text: "Secondary text here"
-                        tertiary_text: "fit more text than usual"
-
-                        ImageLeftWidget:
-                            source: "data/logo/kivy-icon-256.png"
-
+                        padding: "20dp"
+                        size_hint: 0.98, None
+                        size: 0, root.height / 2
+                        # pos_hint: {"center_x": .5, "top": 0.95}
+                        ScrollView:
+                            do_scroll_y: True
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                MDLabel:
+                                    canvas.before:
+                                        Color:
+                                            rgba: 0,0,0,0 # цвет фона текста
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                    height: self.texture_size[1]
+                                    size_hint_y: None
+                                    text: "root.AskView.text"
+                                    multiline: True
+                    AnswerView:
+                        orientation: "vertical"
+                        padding: "20dp"
+                        size_hint: 0.98, None
+                        size: 0, root.height / 2
+                        # pos_hint: {"center_x": .5, "top": 0.95}
+                        ScrollView:
+                            do_scroll_y: True
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                MDLabel:
+                                    canvas.before:
+                                        Color:
+                                            rgba: 0,0,0,0 # цвет фона текста
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.size
+                                    height: self.texture_size[1]
+                                    size_hint_y: None
+                                    text: "root.text11"
+                                    multiline: True
