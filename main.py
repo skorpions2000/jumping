@@ -25,6 +25,7 @@ BoxLayout:
         errors_background_color: app.theme_cls.bg_dark
 '''
 class MainScreen(Screen):
+    text = StringProperty('ask')
     def on_enter(self, *args):
         self.add_widget(MDLabel(text="dsdds"))
 
@@ -32,12 +33,16 @@ class MainScreen(Screen):
 
 class AskView(MDCard):
     text = StringProperty('ask')
+    def get_size(self):
+        return self.size_mytext
     pass
 
 
 class AnswerView(MDCard):
+
+    text = StringProperty('Answer')
     pass
-    # text = StringProperty('answer')
+
 
 
 class AllViewScroll(ScrollView):
@@ -47,9 +52,11 @@ class AllViewScroll(ScrollView):
 class Content(MDGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-
-    pass
+        self.add_widget(AskView(text='My Ask\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\nddc\nddc\nddcddc\nddc\nddcddc\nddc\nddcddc\nddc\nddcddc\nddc\nddcddc\nddc\nddc'))
+        self.add_widget(AnswerView(text="text1"))
+        self.add_widget(AnswerView(text="text2"))
+        self.add_widget(AnswerView(text="text3"))
+        self.add_widget(AnswerView(text="text4"))
 
 
 class Example(MDApp):
