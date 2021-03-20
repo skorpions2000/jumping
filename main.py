@@ -27,12 +27,13 @@ BoxLayout:
 class MainScreen(Screen):
     text = StringProperty('ask')
     def on_enter(self, *args):
-        self.add_widget(MDLabel(text="dsdds"))
+        pass
 
 
 
 class AskView(MDCard):
-    text = StringProperty('ask')
+    question_content = StringProperty('ask')
+    question_detail = StringProperty('ask')
     def get_size(self):
         return self.size_mytext
     pass
@@ -52,7 +53,7 @@ class AllViewScroll(ScrollView):
 class Content(MDGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.add_widget(AskView(text='My Ask\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\ndd\nddc\nddc\nddc\nddcddc\nddc\nddcddc\nddc\nddcddc\nddc\nddcddc\nddc\nddcddc\nddc\nddc'))
+        self.add_widget(AskView(question_content="La alalla lsjdjd", question_detail='My Ask dfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddc'))
         self.add_widget(AnswerView(text="text1"))
         self.add_widget(AnswerView(text="text2"))
         self.add_widget(AnswerView(text="text3"))
@@ -64,7 +65,7 @@ class Example(MDApp):
     path_to_kv_file = "main.kv"
 
     def build(self):
-        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.theme_style = "Light"
         return Builder.load_string(KV)
 
     def update_kv_file(self, text):
