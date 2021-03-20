@@ -12,29 +12,32 @@
     size_hint: 0.98, None
     height: root.ids.textAsk.height + 35
 
-    ScrollView:
-        do_scroll_y: True
-        BoxLayout:
-            id: textAsk
-            orientation: 'vertical'
+#    ScrollView:
+#        do_scroll_y: True
+    MDFlatButton:
+        size_hint: 1, 1
+    BoxLayout:
+        id: textAsk
+        orientation: 'vertical'
+        size_hint_y: None
+        height: self.minimum_height
+
+        MDLabel:
+
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,0 # цвет фона текста
+                Rectangle:
+
+                    pos: self.pos
+                    size: self.size
+
+
+            height: self.texture_size[1]
+
             size_hint_y: None
-            height: self.minimum_height
-            MDLabel:
-
-                canvas.before:
-                    Color:
-                        rgba: 0,0,0,0 # цвет фона текста
-                    Rectangle:
-
-                        pos: self.pos
-                        size: self.size
-
-
-                height: self.texture_size[1]
-
-                size_hint_y: None
-                text: root.text
-                multiline: True
+            text: root.text
+            multiline: True
 <AnswerView>:
     orientation: "vertical"
     padding: "20dp"
