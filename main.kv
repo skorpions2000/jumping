@@ -3,7 +3,25 @@
     adaptive_height: True
     pos_hint: {"top": 1}
     padding: dp(5), dp(5)
+    spacing: dp(10)
+
+<Tags>:
+    id: tags
+    text: root.text_tag
+    icon: 'tag'
+    radius: [3]
+    pos_hint: {'center_y': .5, 'center_x': .5}
+    color: 0, 0, 0, .3
+
+<TagsBlock>:
+    id: tag_block
+    # cols: 1
+    orientation: 'horizontal'
+    adaptive_height: True
+    pos_hint: {"top": 1.1}
+    padding: dp(5), dp(0)
     spacing: dp(4)
+
 
 <AskView>:
     id: askView
@@ -100,10 +118,133 @@
                             multiline: True
             MDCard: # панель содержимого статьи\вопроса
                 size_hint: 1, None
-                size: 0, root.ids.ask_detail.size[1] + 30
+                size: 0, root.ids.ask_detail.size[1] + 30 + 30
+                padding: dp(10), dp(10)
+                MDGridLayout:
+                    cols: 1
+                    # adaptive_height: True
+                    # pos_hint: {"top": 1}
+                    padding: dp(5), dp(5)
+                    TagsBlock:
+                    MDLabel:
+                        id: ask_detail
+                        pos_hint: {"top": 1}
+                        canvas.before:
+                            Color:
+                                rgba: 0,0,0,0 # цвет фона текста
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        height: self.texture_size[1]
+                        size_hint_y: None
+                        text: root.question_detail
+                        multiline: True
+
+
+
+
+<AnswerView>:
+    id: answerView
+    orientation: "vertical"
+    pos_hint: {"top": 1}
+    padding: "1dp"
+    size_hint: 1, None
+    height: root.ids.textAnswer.height + 2
+
+#    ScrollView:
+#        do_scroll_y: True
+    BoxLayout:
+        id: textAnswer
+        orientation: 'vertical'
+        size_hint_y: None
+        height: self.minimum_height
+        MDBoxLayout:
+            orientation: 'vertical'
+            adaptive_height: True
+            spacing: dp(5)
+            MDBoxLayout: # блок логотипа, кнопок, заголовка
+                orientation: 'horizontal'
+                spacing: dp(4)
+                adaptive_height: True
+
+                MDBoxLayout: # блок логотипа, кнопка лайка
+                    orientation: 'vertical'
+                    spacing: dp(4)
+                    adaptive_height: True
+                    size_hint: None, None
+                    size: 50, 50
+
+                    MDCard: # Блок логотипа
+                        pos_hint: {"top": 1}
+                        size_hint: None, None
+                        size: 50, 50
+                        AsyncImage: # логотип
+                            size_hint: None, None
+                            size: 50, 50
+                            source: 'img/img.png'
+                    MDIconButton: # кнопка лайка
+                        pos_hint: {'center_y': .5, 'center_x': .5}
+                        icon: 'cards-heart'
+                MDBoxLayout: # блок заголовка и кнопок
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    spacing: dp(4)
+                    MDCard: # панель кнопок и логина
+                        id: buttons_answer
+                        size_hint: 1, None
+                        size: 0, 50
+                        padding: dp(10), dp(15)
+
+                        MDLabel: # логин\имя
+                            canvas.before:
+                                Color:
+                                    rgba: 0,0,0,0 # цвет фона текста
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                            pos_hint: {"top": 1}
+                            height: self.texture_size[1]
+                            size_hint_y: None
+                            text: root.login
+                            multiline: True
+
+
+
+                        AnchorLayout: # панель кнопки коментариев
+                            anchor_x: "right"
+                            anchor_y: "center"
+                            #size_hint_y: None
+                            size_hint_x: 0.5
+                            height: buttons_answer.height
+
+                            MDIconButton: # кнопка коментариев
+                                pos_hint: {'center_y': .5, 'center_x': .3}
+                                icon: 'chat'
+
+                    MDCard: # панель заголовка
+                        size_hint: 1, None
+                        size: 0, root.ids.answ_content.size[1] + 15
+                        padding: dp(10), dp(10)
+
+                        MDLabel: # заголовок
+                            id: answ_content
+                            canvas.before:
+                                Color:
+                                    rgba: 0,0,0,0 # цвет фона текста
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                            pos_hint: {"top": 1}
+                            height: self.texture_size[1]
+                            size_hint_y: None
+                            text: root.answer_content
+                            multiline: True
+            MDCard: # панель содержимого статьи\вопроса
+                size_hint: 1, None
+                size: 0, root.ids.ans_detail.size[1] + 30
                 padding: dp(10), dp(10)
                 MDLabel:
-                    id: ask_detail
+                    id: ans_detail
                     canvas.before:
                         Color:
                             rgba: 0,0,0,0 # цвет фона текста
@@ -112,34 +253,8 @@
                             size: self.size
                     height: self.texture_size[1]
                     size_hint_y: None
-                    text: root.question_detail
+                    text: root.answer_detail
                     multiline: True
-
-
-<AnswerView>:
-    orientation: "vertical"
-    padding: "20dp"
-    size_hint: 0.98, None
-    size: 0, 200
-
-    # pos_hint: {"center_x": .5, "top": 0.95}
-    ScrollView:
-        do_scroll_y: True
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint_y: None
-            height: self.minimum_height
-            MDLabel:
-                canvas.before:
-                    Color:
-                        rgba: 0,0,0,0 # цвет фона текста
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                height: self.texture_size[1]
-                size_hint_y: None
-                text: root.text
-                multiline: True
 
 
 
@@ -154,6 +269,3 @@ Screen:
             height: self.minimum_height
 
             Content:
-
-
-
