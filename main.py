@@ -32,6 +32,7 @@ class MainScreen(Screen):
 
 
 class AskView(MDCard):
+    login = StringProperty('login')
     question_content = StringProperty('ask')
     question_detail = StringProperty('ask')
     def get_size(self):
@@ -53,7 +54,7 @@ class AllViewScroll(ScrollView):
 class Content(MDGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.add_widget(AskView(question_content="La alalla lsjdjd", question_detail='My Ask dfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddc'))
+        self.add_widget(AskView(login='My login', question_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", question_detail='My Ask dfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddc'))
         self.add_widget(AnswerView(text="text1"))
         self.add_widget(AnswerView(text="text2"))
         self.add_widget(AnswerView(text="text3"))

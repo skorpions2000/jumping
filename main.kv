@@ -2,15 +2,16 @@
     cols: 1
     adaptive_height: True
     pos_hint: {"top": 1}
-    padding: dp(10), dp(10)
+    padding: dp(5), dp(5)
     spacing: dp(4)
 
 <AskView>:
     id: askView
     orientation: "vertical"
-    padding: "20dp"
-    size_hint: 0.98, None
-    height: root.ids.textAsk.height + 35
+    pos_hint: {"top": 1}
+    padding: "1dp"
+    size_hint: 1, None
+    height: root.ids.textAsk.height + 2
 
 #    ScrollView:
 #        do_scroll_y: True
@@ -22,51 +23,71 @@
         MDBoxLayout:
             orientation: 'vertical'
             adaptive_height: True
-            spacing: dp(7)
-            MDBoxLayout:
+            spacing: dp(5)
+            MDBoxLayout: # блок логотипа, кнопок, заголовка
                 orientation: 'horizontal'
                 spacing: dp(4)
                 adaptive_height: True
-                MDCard:
+                MDCard: # Блок логотипа
                     size_hint: None, None
                     size: 100, 100
-                    AsyncImage:
+                    AsyncImage: # логотип
                         size_hint: None, None
                         size: 100, 100
                         source: 'img/img.png'
-                MDBoxLayout:
+                MDBoxLayout: # блок заголовка и кнопок
                     orientation: 'vertical'
                     adaptive_height: True
                     spacing: dp(4)
-                    MDCard:
+                    MDCard: # панель кнопок и логина
                         id: buttons
                         size_hint: 1, None
                         size: 0, 50
-                        AnchorLayout:
-                            anchor_x: "right"
+                        padding: dp(10), dp(15)
+
+                        MDLabel: # логин\имя
+                            canvas.before:
+                                Color:
+                                    rgba: 0,0,0,0 # цвет фона текста
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                            pos_hint: {"top": 1}
+                            height: self.texture_size[1]
                             size_hint_y: None
+                            text: root.login
+                            multiline: True
+
+                        AnchorLayout: # панель кнопки лайка
+                            anchor_x: "right"
+                            anchor_y: "center"
+                            #size_hint_y: None
                             size_hint_x: 1
                             height: buttons.height
 
-                            MDIconButton:
-                                pos_hint: {'center_y': .5, 'center_x': .1}
+                            MDIconButton: # кнопка лайка
+                                pos_hint: {'center_y': 1, 'center_x': .1}
                                 icon: 'cards-heart'
-                        AnchorLayout:
+
+                        AnchorLayout: # панель кнопки коментариев
                             anchor_x: "right"
-                            size_hint_y: None
-                            size_hint_x: 0.2
+                            anchor_y: "center"
+                            #size_hint_y: None
+                            size_hint_x: 0.5
                             height: buttons.height
-                            MDIconButton:
+
+                            MDIconButton: # кнопка коментариев
                                 pos_hint: {'center_y': .5, 'center_x': .3}
                                 icon: 'chat'
 
-                    MDCard:
+                    MDCard: # панель заголовка
                         size_hint: 1, None
-                        size: 0, 50
+                        size: 0, root.ids.ask_content.size[1] + 15
                         padding: dp(10), dp(10)
 
 
-                        MDLabel:
+                        MDLabel: # заголовок
+                            id: ask_content
                             canvas.before:
                                 Color:
                                     rgba: 0,0,0,0 # цвет фона текста
@@ -78,7 +99,7 @@
                             size_hint_y: None
                             text: root.question_content
                             multiline: True
-            MDCard:
+            MDCard: # панель содержимого статьи\вопроса
                 size_hint: 1, None
                 size: 0, root.ids.ask_detail.size[1] + 30
                 padding: dp(10), dp(10)
