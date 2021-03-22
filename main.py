@@ -69,12 +69,12 @@ class AllViewScroll(ScrollView):
 class Content(MDGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.add_widget(AskView(login='My login', question_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", question_detail='My Ask dfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddc'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ask dfg f'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Askjhnljknhkjhljk lkj jlk lkh lkhlk j;l kjl jlkjj; f'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ashhloihihi juhlk hlkhl khk hkjf'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj", answer_detail='My A hjh lhjlohjlhlkjhlkj hkj hklh jklhklj hlkh khl khkh kljh lk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        self.add_widget(AskView(login='My login', question_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", question_detail='My Ask dfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdмs nddc'))
+        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ask dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg f'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Askjhnljknhkjhljk lkj jlk lkh lkhlk j;l kjl jlkjj; f'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ashhloihihi juhlk hlkhl khk hkjf'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj", answer_detail='My A hjh lhjlohjlhlkjhlkj hkj hklh jklhklj hlkh khl khkh kljh lk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
 
 
 
@@ -82,7 +82,7 @@ class Example(MDApp):
     path_to_kv_file = "main.kv"
 
     def build(self):
-        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.theme_style = "Light"
         return Builder.load_string(KV)
 
     def update_kv_file(self, text):
