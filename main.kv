@@ -1,15 +1,19 @@
 <Content>:
+    id: contents
     cols: 1
-    # adaptive_height: True
-    # pos_hint: {"top": 1}
+    size_hint_y: None
     padding: dp(5), dp(5)
     spacing: dp(10)
+    height: self.minimum_height
+
 
 <Tags>:
     id: tags
     text: root.text_tag
     icon: 'tag'
     radius: [3]
+    size_hint_y: None
+    height: 25
     pos_hint: {'center_y': .5, 'center_x': .5}
     color: 0, 0, 0, .3
 
@@ -17,33 +21,36 @@
     id: tag_block
     # cols: 1
     orientation: 'horizontal'
-    # adaptive_height: True
-    pos_hint: {"top": 1.1}
+    height: 50
     padding: dp(5), dp(0)
-    spacing: dp(4)
+    spacing: dp(10)
+
 
 
 <AskView>:
     id: askView
     orientation: "vertical"
-    pos_hint: {"top": 1}
     padding: "1dp"
-    size_hint: 1, None
-    size: 0, root.ids.textAsk.size[1] + 2
+    size_hint_y: None
+    height: textAsk.height
 
     BoxLayout:
         id: textAsk
         orientation: 'vertical'
         size_hint_y: None
-        height: self.minimum_height
+        height: mdboox_alls.height
         MDBoxLayout:
+            id: mdboox_alls
             orientation: 'vertical'
-            adaptive_height: True
             spacing: dp(5)
+            size_hint_y: None
+            height: all_ask_box.height + all_ask_card.height
             MDBoxLayout: # блок логотипа, кнопок, заголовка
+                id: all_ask_box
                 orientation: 'horizontal'
                 spacing: dp(4)
-                adaptive_height: True
+                size_hint_y: None
+                height: 65 + ask_content_card.height
                 MDCard: # Блок логотипа
                     size_hint: None, None
                     size: 100, 100
@@ -52,70 +59,56 @@
                         size: 100, 100
                         source: 'img/img.png'
                 MDBoxLayout: # блок заголовка и кнопок
+                    id: box_info_ask
                     orientation: 'vertical'
-                    adaptive_height: True
+                    height: login_ask.height
                     spacing: dp(4)
                     MDCard: # панель кнопок и логина
                         id: buttons
-                        size_hint: 1, None
-                        size: 0, login_ask.texture_size[1] + 30
-                        padding: dp(10), dp(15)
-
+                        size_hint_y: None
+                        height: login_ask.height
                         MDLabel: # логин\имя
                             id: login_ask
-                            pos_hint: {"top": 1}
-                            height: self.texture_size[1]
                             size_hint_y: None
+                            height: self.texture_size[1]
                             text: root.login
-                            multiline: True
+                            padding: dp(0), dp(10)
 
-                        AnchorLayout: # панель кнопки лайка
-                            anchor_x: "right"
-                            anchor_y: "center"
-                            size_hint_x: 1
-                            height: buttons.height
 
+                        GridLayout: # панель кнопки лайка
+                            cols: 2
+                            orientation: 'rl-bt'
                             MDIconButton: # кнопка лайка
-                                pos_hint: {'center_y': 1, 'center_x': .1}
                                 icon: 'cards-heart'
 
-                        AnchorLayout: # панель кнопки коментариев
-                            anchor_x: "right"
-                            anchor_y: "center"
-                            size_hint_x: 0.5
-                            height: buttons.height
-
                             MDIconButton: # кнопка коментариев
-                                pos_hint: {'center_y': .5, 'center_x': .3}
                                 icon: 'chat'
 
                     MDCard: # панель заголовка
-                        size_hint: 1, None
-                        size: 0, root.ids.ask_content.texture_size[1] + 15
-                        padding: dp(10), dp(10)
+                        id: ask_content_card
+                        size_hint_y: None
+                        height: ask_content.size[1]
 
                         MDLabel: # заголовок
                             id: ask_content
-                            pos_hint: {"top": 1}
-                            height: self.texture_size[1]
                             size_hint_y: None
+                            height: self.texture_size[1]
                             text: root.question_content
-                            multiline: True
+                            padding: dp(10), dp(10)
             MDCard: # панель содержимого статьи\вопроса
-                size_hint: 1, None
-                size: 0, root.ids.ask_detail.texture_size[1] + 30 + 30
-                padding: dp(10), dp(10)
-                MDGridLayout:
-                    cols: 1
-                    padding: dp(5), dp(5)
-                    TagsBlock:
-                    MDLabel:
-                        id: ask_detail
-                        pos_hint: {"top": 1}
-                        height: self.texture_size[1]
-                        size_hint_y: None
-                        text: root.question_detail
-                        multiline: True
+                id: all_ask_card
+                orientation: "vertical"
+                size_hint_y: None
+                height: 50 + ask_detail.texture_size[1]
+                padding: dp(10)
+                TagsBlock:
+                    id: tags_block
+                MDLabel:
+                    id: ask_detail
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: root.question_detail
+                    padding: dp(10), dp(10)
 
 
 
@@ -123,10 +116,9 @@
 <AnswerView>:
     id: answerView
     orientation: "vertical"
-    pos_hint: {"top": 1}
     padding: "1dp"
-    size_hint: 1, None
-    height: root.ids.textAnswer.height + 2
+    size_hint_y: None
+    height: textAnswer.height
 
 #    ScrollView:
 #        do_scroll_y: True
@@ -134,25 +126,28 @@
         id: textAnswer
         orientation: 'vertical'
         size_hint_y: None
-        height: self.minimum_height
+        height: box_all_answer.height
         MDBoxLayout:
+            id: box_all_answer
             orientation: 'vertical'
-            adaptive_height: True
             spacing: dp(5)
+            size_hint_y: None
+            height: 20 + box_all_small.height + card_detail_all.height
             MDBoxLayout: # блок логотипа, кнопок, заголовка
+                id: box_all_small
                 orientation: 'horizontal'
                 spacing: dp(4)
-                adaptive_height: True
+                size_hint_y: None
+                height: 10 + block_login_and_detail.height
 
                 MDBoxLayout: # блок логотипа, кнопка лайка
+                    id: block_logo
                     orientation: 'vertical'
                     spacing: dp(4)
-                    adaptive_height: True
                     size_hint: None, None
                     size: 50, 50
 
                     MDCard: # Блок логотипа
-                        pos_hint: {"top": 1}
                         size_hint: None, None
                         size: 50, 50
                         AsyncImage: # логотип
@@ -160,71 +155,51 @@
                             size: 50, 50
                             source: 'img/img.png'
                     MDIconButton: # кнопка лайка
-                        pos_hint: {'center_y': .5, 'center_x': .5}
                         icon: 'cards-heart'
                 MDBoxLayout: # блок заголовка и кнопок
+                    id: block_login_and_detail
                     orientation: 'vertical'
-                    adaptive_height: True
                     spacing: dp(4)
+                    size_hint_y: None
+                    height: buttons_answer.height + card_answer_detail.height
                     MDCard: # панель кнопок и логина
                         id: buttons_answer
-                        size_hint: 1, None
-                        size: 0, 50
-                        padding: dp(10), dp(15)
-
+                        size_hint_y: None
+                        height: login_answer.height
                         MDLabel: # логин\имя
-                            canvas.before:
-                            pos_hint: {"top": 1}
-                            height: self.texture_size[1]
+                            id: login_answer
                             size_hint_y: None
+                            height: self.texture_size[1]
                             text: root.login
-                            multiline: True
+                            padding: dp(15), dp(15)
 
-
-
-                        AnchorLayout: # панель кнопки коментариев
-                            anchor_x: "right"
-                            anchor_y: "center"
-                            size_hint_x: 0.5
-                            height: buttons_answer.height
-
-                            MDIconButton: # кнопка коментариев
-                                pos_hint: {'center_y': .5, 'center_x': .3}
-                                icon: 'chat'
+                        MDIconButton: # кнопка коментариев
+                            icon: 'chat'
 
                     MDCard: # панель заголовка
-                        size_hint: 1, None
-                        size: 0, root.ids.answ_content.texture_size[1] + 15
-                        padding: dp(10), dp(10)
-
+                        id: card_answer_detail
+                        size_hint_y: None
+                        height: answ_content.height
                         MDLabel: # заголовок
                             id: answ_content
-                            pos_hint: {"top": 1}
-                            height: self.texture_size[1]
                             size_hint_y: None
+                            height: self.texture_size[1]
                             text: root.answer_content
-                            multiline: True
+                            padding: dp(10), dp(10)
             MDCard: # панель содержимого статьи\вопроса
-                size_hint: 1, None
-                size: 0, root.ids.ans_detail.texture_size[1] + 30
-                padding: dp(10), dp(10)
+                id: card_detail_all
+                size_hint_y: None
+                height: ans_detail.height
                 MDLabel:
                     id: ans_detail
-                    height: self.texture_size[1]
                     size_hint_y: None
+                    height: self.texture_size[1]
+                    padding: dp(10), dp(10)
                     text: root.answer_detail
-                    multiline: True
 
 
 
 Screen:
     name: "account"
     ScrollView:
-        do_scroll_y: True
-        do_scroll_x: False
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint_y: None
-            height: self.minimum_height
-
-            Content:
+        Content:
