@@ -78,6 +78,7 @@ class ExampleViewer(RecycleView):
         print("test")
 
 
+
 class Content(MDGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
