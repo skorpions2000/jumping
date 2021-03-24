@@ -25,7 +25,23 @@
     padding: dp(5), dp(0)
     spacing: dp(10)
 
+<ExampleViewer>:
+#    data: [{'root.ids.ask_detail.text': str(x)} for x in range(20)]
+    viewclass: 'AnswerView'  # defines the viewtype for the data items.
+#    orientation: "vertical"
+#    spacing: 40
+    padding: dp(10), dp(10)
+    space_x: dp(500)#self.size[0]/3
 
+    RecycleBoxLayout:
+#        color:(0, 0.7, 0.4, 0.8)
+        default_size: None, None
+
+        # defines the size of the widget in reference to width and height
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical' # defines the orientation of data items
 
 <AskView>:
     id: askView
@@ -115,6 +131,9 @@
 
 <AnswerView>:
     id: answerView
+    text_login: login_answer.text
+    text_detail: answ_content.text
+    text_content: ans_detail.text
     orientation: "vertical"
     padding: "1dp"
     size_hint_y: None
@@ -170,7 +189,7 @@
                             id: login_answer
                             size_hint_y: None
                             height: self.texture_size[1]
-                            text: root.login
+                            text: root.text_login
                             padding: dp(15), dp(15)
 
                         MDIconButton: # кнопка коментариев
@@ -184,7 +203,7 @@
                             id: answ_content
                             size_hint_y: None
                             height: self.texture_size[1]
-                            text: root.answer_content
+                            text: root.text_detail
                             padding: dp(10), dp(10)
             MDCard: # панель содержимого статьи\вопроса
                 id: card_detail_all
@@ -195,11 +214,14 @@
                     size_hint_y: None
                     height: self.texture_size[1]
                     padding: dp(10), dp(10)
-                    text: root.answer_detail
+                    text: root.text_content
 
 
 
 Screen:
     name: "account"
     ScrollView:
-        Content:
+        GridLayout:
+            cols: 1
+
+            ExampleViewer:

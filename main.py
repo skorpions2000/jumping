@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.recycleview import RecycleView
 from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
 
@@ -32,14 +33,14 @@ class MainScreen(Screen):
 
 
 
-class AskView(MDCard):
+class AskView(BoxLayout):
     login = StringProperty('login')
     question_content = StringProperty('ask')
     question_detail = StringProperty('ask')
     pass
 
 
-class AnswerView(MDCard):
+class AnswerView(BoxLayout):
     login = StringProperty('login')
     answer_content = StringProperty('answer')
     answer_detail = StringProperty('answer')
@@ -62,75 +63,86 @@ class TagsBlock(BoxLayout):
 
 
 
-class AllViewScroll(ScrollView):
-    pass
+class ExampleViewer(RecycleView):
+    """
+    нужно разделить виджет на две функционаоьности,
+    теперь будет один виджет для двух вещей,
+    один раз вопрос и много раз ответ,
+    будут изменятся парамметры размеров и изменятся кнопки
+    """
+    def __init__(self, **kwargs):
+        super(ExampleViewer, self).__init__(**kwargs)
+        self.data = [{'text_login': str(x*999999999) + "nnnn",
+                      'text_detail': str(x*99999),
+                      'text_content': str(x*99999)} for x in range(4)]
+        print("test")
 
 
 class Content(MDGridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(AskView(login='My login', question_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", question_detail='My Ask dfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fds nddfg fdмs nddc'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ask dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg f'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Askjhnljknhkjhljk lkj jlk lkh lkhlk j;l kjl jlkjj; f'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ashhloihihi juhlk hlkhl khk hkjf'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj", answer_detail='My A hjh lhjlohjlhlkjhlkj hkj hklh jklhklj hlkh khl khkh kljh lk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
-        self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ask dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg fAsk dfg f'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Askjhnljknhkjhljk lkj jlk lkh lkhlk j;l kjl jlkjj; f'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj fdsgsdfg dsgfds gdf gdsf g sdf g sdf gd sfsdfgdsgsdfg ", answer_detail='My Ashhloihihi juhlk hlkhl khk hkjf'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd ufdhvdsl fgsdlkglkdsfj", answer_detail='My A hjh lhjlohjlhlkjhlkj hkj hklh jklhklj hlkh khl khkh kljh lk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
+        # self.add_widget(AnswerView(login='My login', answer_content="La alalla lsjdjd u", answer_detail='Myddfsddf bgjhgj khj jgjh gjk gkjh gkjh gkj gjk gjk gkj kj hgjh gkj gk khjjhhk'))
 
 
 
