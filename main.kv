@@ -1,10 +1,10 @@
-<Content>:
-    id: contents
-    cols: 1
-    size_hint_y: None
-    padding: dp(5), dp(5)
-    spacing: dp(10)
-    height: self.minimum_height
+#<Content>:
+#    id: contents
+#    cols: 1
+#    size_hint_y: None
+#    padding: dp(5), dp(5)
+#    spacing: dp(10)
+#    height: self.minimum_height
 
 
 <Tags>:
@@ -13,7 +13,7 @@
     icon: 'tag'
     radius: [3]
     size_hint_y: None
-    height: 25
+    height: self.minimum_height
     pos_hint: {'center_y': .5, 'center_x': .5}
     color: 0, 0, 0, .3
 
@@ -22,17 +22,19 @@
     id: tag_block
     # cols: 1
     orientation: 'horizontal'
-    height: 50
-    padding: dp(5), dp(0)
+    height: self.minimum_height
+    padding: dp(5), dp(5)
     spacing: dp(10)
 
 <ExampleViewer>:
 #    data: [{'root.ids.ask_detail.text': str(x)} for x in range(20)]
-    viewclass: 'AnswerView'  # defines the viewtype for the data items.
-#    orientation: "vertical"
-#    spacing: 40
+    viewclass: 'AskView'  # defines the viewtype for the data items.
+
+    orientation: "vertical"
+    spacing: 40
     padding: dp(10), dp(10)
-    space_x: dp(500)#self.size[0]/3
+    space_x: self.size[1]
+
 
     RecycleBoxLayout:
 #        color:(0, 0.7, 0.4, 0.8)
@@ -46,16 +48,24 @@
 
 <AskView>:
     id: askView
+    text_login: login_ask.text
+    text_content: ask_content.text
+    text_detail: ask_detail.text
     orientation: "vertical"
-    padding: "1dp"
+#    padding: "5dp"
+    spacing: 0
     size_hint_y: None
-    height: textAsk.height
+    height: dp(10) + textAsk.height
 
-    BoxLayout:
+    MDSeparator:
+        height: "3dp"
+    MDBoxLayout:
         id: textAsk
         orientation: 'vertical'
         size_hint_y: None
-        height: mdboox_alls.height
+        padding: dp(10), dp(10)
+        height: all_ask_box.height + all_ask_card.height + login_ask.height
+
         MDBoxLayout:
             id: mdboox_alls
             orientation: 'vertical'
@@ -67,162 +77,169 @@
                 orientation: 'horizontal'
                 spacing: dp(4)
                 size_hint_y: None
-                height: 65 + ask_content_card.height
-                MDCard: # Блок логотипа
+                height: login_ask.height + ask_content.height
+                MDBoxLayout: # Блок логотипа
                     size_hint: None, None
-                    size: 100, 100
+                    size: dp(100), dp(100)
                     AsyncImage: # логотип
                         size_hint: None, None
-                        size: 100, 100
+                        size: dp(100), dp(100)
+                        allow_stretch: True
                         source: 'img/img.png'
                 MDBoxLayout: # блок заголовка и кнопок
                     id: box_info_ask
                     orientation: 'vertical'
                     height: login_ask.height
                     spacing: dp(4)
-                    MDCard: # панель кнопок и логина
-                        id: buttons
+#                    MDCard: # панель кнопок и логина
+#                        id: buttons
+#                        size_hint_y: None
+#                        height: login_ask.height
+#                    MDSeparator:
+#                        height: "2dp"
+                    MDLabel: # логин\имя
+                        id: login_ask
                         size_hint_y: None
-                        height: login_ask.height
-                        MDLabel: # логин\имя
-                            id: login_ask
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                            text: root.login
-                            padding: dp(0), dp(10)
+                        height: self.texture_size[1]
+                        text: root.text_login
+                        padding: dp(10), dp(10)
 
 
-                        GridLayout: # панель кнопки лайка
-                            cols: 2
-                            orientation: 'rl-bt'
-                            MDIconButton: # кнопка лайка
-                                icon: 'cards-heart'
-
-                            MDIconButton: # кнопка коментариев
-                                icon: 'chat'
-
-                    MDCard: # панель заголовка
-                        id: ask_content_card
-                        size_hint_y: None
-                        height: ask_content.size[1]
-
-                        MDLabel: # заголовок
-                            id: ask_content
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                            text: root.question_content
-                            padding: dp(10), dp(10)
-            MDCard: # панель содержимого статьи\вопроса
-                id: all_ask_card
-                orientation: "vertical"
-                size_hint_y: None
-                height: 50 + ask_detail.texture_size[1]
-                padding: dp(10)
-                TagsBlock:
-                    id: tags_block
-                MDLabel:
-                    id: ask_detail
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    text: root.question_detail
-                    padding: dp(10), dp(10)
-
-
-
-
-<AnswerView>:
-    id: answerView
-    text_login: login_answer.text
-    text_detail: answ_content.text
-    text_content: ans_detail.text
-    orientation: "vertical"
-    padding: "1dp"
-    size_hint_y: None
-    height: textAnswer.height
-
-#    ScrollView:
-#        do_scroll_y: True
-    BoxLayout:
-        id: textAnswer
-        orientation: 'vertical'
-        size_hint_y: None
-        height: box_all_answer.height
-        MDBoxLayout:
-            id: box_all_answer
-            orientation: 'vertical'
-            spacing: dp(5)
-            size_hint_y: None
-            height: 20 + box_all_small.height + card_detail_all.height
-            MDBoxLayout: # блок логотипа, кнопок, заголовка
-                id: box_all_small
-                orientation: 'horizontal'
-                spacing: dp(4)
-                size_hint_y: None
-                height: 10 + block_login_and_detail.height
-
-                MDBoxLayout: # блок логотипа, кнопка лайка
-                    id: block_logo
-                    orientation: 'vertical'
-                    spacing: dp(4)
-                    size_hint: None, None
-                    size: 50, 50
-
-                    MDCard: # Блок логотипа
-                        size_hint: None, None
-                        size: 50, 50
-                        AsyncImage: # логотип
-                            size_hint: None, None
-                            size: 50, 50
-                            source: 'img/img.png'
-                    MDIconButton: # кнопка лайка
-                        icon: 'cards-heart'
-                MDBoxLayout: # блок заголовка и кнопок
-                    id: block_login_and_detail
-                    orientation: 'vertical'
-                    spacing: dp(4)
-                    size_hint_y: None
-                    height: buttons_answer.height + card_answer_detail.height
-                    MDCard: # панель кнопок и логина
-                        id: buttons_answer
-                        size_hint_y: None
-                        height: login_answer.height
-                        MDLabel: # логин\имя
-                            id: login_answer
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                            text: root.text_login
-                            padding: dp(15), dp(15)
+                    GridLayout: # панель кнопки лайка
+                        cols: 2
+                        orientation: 'rl-bt'
+                        MDIconButton: # кнопка лайка
+                            icon: 'cards-heart'
 
                         MDIconButton: # кнопка коментариев
                             icon: 'chat'
 
-                    MDCard: # панель заголовка
-                        id: card_answer_detail
+#                    MDCard: # панель заголовка
+#                        id: ask_content_card
+#                        size_hint_y: None
+#                        height: ask_content.size[1]
+                    MDSeparator:
+                        height: "1dp"
+                    MDLabel: # заголовок
+                        id: ask_content
                         size_hint_y: None
-                        height: answ_content.height
-                        MDLabel: # заголовок
-                            id: answ_content
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                            text: root.text_detail
-                            padding: dp(10), dp(10)
-            MDCard: # панель содержимого статьи\вопроса
-                id: card_detail_all
+                        height: self.texture_size[1]
+                        text: root.text_content
+                        padding: dp(10), dp(10)
+            MDBoxLayout: # панель содержимого статьи\вопроса
+                id: all_ask_card
+                orientation: "vertical"
                 size_hint_y: None
-                height: ans_detail.height
+                height: dp(50) + ask_detail.texture_size[1]
+                padding: dp(10)
+                spacing: dp(10)
+                TagsBlock:
+                    id: tags_block
+                MDSeparator:
+                    height: "1dp"
                 MDLabel:
-                    id: ans_detail
+                    id: ask_detail
                     size_hint_y: None
                     height: self.texture_size[1]
-                    padding: dp(10), dp(10)
-                    text: root.text_content
+                    text: root.text_detail
+                    padding: dp(0), dp(0)
+    MDSeparator:
+        height: "3dp"
 
+
+#<AnswerView>:
+#    id: answerView
+#    text_login: login_answer.text
+#    text_detail: answ_content.text
+#    text_content: ans_detail.text
+#    orientation: "vertical"
+#    padding: "1dp"
+#    size_hint_y: None
+#    height: textAnswer.height
+#
+##    ScrollView:
+##        do_scroll_y: True
+#    BoxLayout:
+#        id: textAnswer
+#        orientation: 'vertical'
+#        size_hint_y: None
+#        height: box_all_answer.height
+#        MDBoxLayout:
+#            id: box_all_answer
+#            orientation: 'vertical'
+#            spacing: dp(5)
+#            size_hint_y: None
+#            height: 20 + box_all_small.height + card_detail_all.height
+#            MDBoxLayout: # блок логотипа, кнопок, заголовка
+#                id: box_all_small
+#                orientation: 'horizontal'
+#                spacing: dp(4)
+#                size_hint_y: None
+#                height: 10 + block_login_and_detail.height
+#
+#                MDBoxLayout: # блок логотипа, кнопка лайка
+#                    id: block_logo
+#                    orientation: 'vertical'
+#                    spacing: dp(4)
+#                    size_hint: None, None
+#                    size: 50, 50
+#
+#                    MDCard: # Блок логотипа
+#                        size_hint: None, None
+#                        size: 50, 50
+#                        AsyncImage: # логотип
+#                            size_hint: None, None
+#                            size: 50, 50
+#                            source: 'img/img.png'
+#                    MDIconButton: # кнопка лайка
+#                        icon: 'cards-heart'
+#                MDBoxLayout: # блок заголовка и кнопок
+#                    id: block_login_and_detail
+#                    orientation: 'vertical'
+#                    spacing: dp(4)
+#                    size_hint_y: None
+#                    height: buttons_answer.height + card_answer_detail.height
+#                    MDCard: # панель кнопок и логина
+#                        id: buttons_answer
+#                        size_hint_y: None
+#                        height: login_answer.height
+#                        MDLabel: # логин\имя
+#                            id: login_answer
+#                            size_hint_y: None
+#                            height: self.texture_size[1]
+#                            text: root.text_login
+#                            padding: dp(15), dp(15)
+#
+#                        MDIconButton: # кнопка коментариев
+#                            icon: 'chat'
+#
+#                    MDCard: # панель заголовка
+#                        id: card_answer_detail
+#                        size_hint_y: None
+#                        height: answ_content.height
+#                        MDLabel: # заголовок
+#                            id: answ_content
+#                            size_hint_y: None
+#                            height: self.texture_size[1]
+#                            text: root.text_detail
+#                            padding: dp(10), dp(10)
+#            MDCard: # панель содержимого статьи\вопроса
+#                id: card_detail_all
+#                size_hint_y: None
+#                height: ans_detail.height
+#                MDLabel:
+#                    id: ans_detail
+#                    size_hint_y: None
+#                    height: self.texture_size[1]
+#                    padding: dp(10), dp(10)
+#                    text: root.text_content
+#
 
 
 Screen:
     name: "account"
-    ScrollView:
-        GridLayout:
-            cols: 1
+#    ScrollView:
+#        GridLayout:
+#            cols: 1
 
-            ExampleViewer:
+    ExampleViewer:
